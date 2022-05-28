@@ -1,0 +1,24 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: 20
+        jdbc:
+          batch_size: 20
+        format_sql: true
+    hibernate:
+      ddl-auto: create
+    open-in-view: false
+    show-sql: true
+  datasource:
+    username: sa
+    url: jdbc:h2:mem:voting
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  security:
+    user:
+      name: user
+      password: user

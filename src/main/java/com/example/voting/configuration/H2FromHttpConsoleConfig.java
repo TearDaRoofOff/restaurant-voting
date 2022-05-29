@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 @Configuration
 @Slf4j
-public class AppConfig {
+public class H2FromHttpConsoleConfig {
 
     @Bean(initMethod = "start", destroyMethod = "stop")
     public Server h2Server() throws SQLException {

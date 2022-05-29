@@ -1,5 +1,6 @@
 package com.example.voting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Cache;
@@ -22,6 +23,7 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @ToString(callSuper = true, exclude="password")
+@JsonIgnoreProperties({"new"})
 public class User extends AbstractPersistable<Integer> {
 
     @Column(name = "email", nullable = false, unique = true)

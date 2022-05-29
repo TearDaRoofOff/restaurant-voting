@@ -23,16 +23,6 @@ public class VotingApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        userRepository.save(new User("rus@ngs.ru",
-                "Ruslan",
-                "Kolesnikov",
-                "sa",
-                Set.of(Role.ROLE_ADMIN, Role.ROLE_USER)));
-        userRepository.save(new User("kol@ngs.ru",
-                "Denis",
-                "Kolesnikov",
-                "sa",
-                Set.of(Role.ROLE_USER)));
         System.out.println(userRepository.findAll());
     }
 }

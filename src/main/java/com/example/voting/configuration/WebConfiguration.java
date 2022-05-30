@@ -1,6 +1,7 @@
 package com.example.voting.configuration;
 
 import com.example.voting.AuthUser;
+import com.example.voting.model.Role;
 import com.example.voting.model.User;
 import com.example.voting.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -42,12 +43,12 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(PasswordEncoderFactories.createDelegatingPasswordEncoder());
     }
 
-/*    @Override
+    @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().antMatchers("/").permitAll().and()
-                .authorizeRequests().antMatchers("/console/**").permitAll();
-
-        httpSecurity.csrf().disable();
-        httpSecurity.headers().frameOptions().disable();
-    }*/
+        httpSecurity.authorizeRequests()
+                .antMatchers("/account").hasRole(Role.USER.name())
+                .antMatchers("/api/**").hasRole(Role.ADMIN.name())
+                .and()
+                .formLogin();
+    }
 }

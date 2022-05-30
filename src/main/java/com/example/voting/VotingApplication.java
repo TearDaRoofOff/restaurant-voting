@@ -14,15 +14,10 @@ import java.util.Set;
 
 @SpringBootApplication
 @AllArgsConstructor
-public class VotingApplication implements ApplicationRunner {
+public class VotingApplication {
     private final UserRepository userRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(VotingApplication.class, args);
-    }
-
-    @Override
-    public void run(ApplicationArguments args) throws Exception {
-        System.out.println(userRepository.findAll());
     }
 }

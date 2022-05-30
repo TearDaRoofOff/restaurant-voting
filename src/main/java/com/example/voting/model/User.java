@@ -13,6 +13,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(callSuper = true, exclude="password")
 @JsonIgnoreProperties({"new"})
-public class User extends AbstractPersistable<Integer> {
+public class User extends AbstractPersistable<Integer> implements Serializable {
 
     @Column(name = "email", nullable = false, unique = true)
     @Email

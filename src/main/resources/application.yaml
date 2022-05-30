@@ -26,6 +26,7 @@ spring:
     user:
       name: user
       password: user
+      roles: ROLE_USER
   data:
     rest:
       base-path: /api

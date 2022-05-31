@@ -1,6 +1,9 @@
 package com.example.voting.model;
 
+import com.example.voting.configuration.WebConfiguration;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import lombok.*;
 import org.hibernate.Hibernate;
 import org.hibernate.annotations.Cache;
@@ -43,9 +46,10 @@ public class User extends AbstractPersistable<Integer> implements Serializable {
     @Size(min = 2, max = 100)
     private String last_name;
 
-    @NotBlank
-    @Column(name = "password", nullable = false)
-    @Size(min = 2, max = 25)
+    @Column(name = "password")
+    @Size(max = 256)
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonDeserialize(using = WebConfiguration.JsonDeserializers.PasswordDeserializer.class)
     private String password;
 
     @Enumerated(EnumType.STRING)

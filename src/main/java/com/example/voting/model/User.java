@@ -56,7 +56,7 @@ public class User extends AbstractPersistable<Integer> implements Serializable {
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.EAGER)
-    @JoinColumn(name = "id") //https://stackoverflow.com/a/62848296/548473
+    @JoinColumn(name = "id")
     private Set<Role> role;
 
     @Override

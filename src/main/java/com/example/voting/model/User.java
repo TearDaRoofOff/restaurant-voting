@@ -9,6 +9,8 @@ import org.hibernate.Hibernate;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -30,6 +32,8 @@ import java.util.Set;
 @JsonIgnoreProperties({"new"})
 public class User extends AbstractPersistable<Integer> implements Serializable {
 
+    private static final PasswordEncoder ENCODER = new BCryptPasswordEncoder();
+
     @Column(name = "email", nullable = false, unique = true)
     @Email
     @NotBlank
@@ -49,7 +53,6 @@ public class User extends AbstractPersistable<Integer> implements Serializable {
     @Column(name = "password")
     @Size(max = 256)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @JsonDeserialize(using = WebConfiguration.JsonDeserializers.PasswordDeserializer.class)
     private String password;
 
     @Enumerated(EnumType.STRING)
@@ -58,6 +61,10 @@ public class User extends AbstractPersistable<Integer> implements Serializable {
     @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "id")
     private Set<Role> role;
+
+    public void setPassword(String password) {
+        this.password = ENCODER.encode(password);
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -1,4 +1,4 @@
-package com.example.voting.model;
+package com.example.voting.domain;
 
 import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;

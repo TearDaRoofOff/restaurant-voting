@@ -1,8 +1,8 @@
 package com.example.voting.configuration;
 
 import com.example.voting.AuthUser;
-import com.example.voting.model.Role;
-import com.example.voting.model.User;
+import com.example.voting.domain.Role;
+import com.example.voting.domain.User;
 import com.example.voting.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,17 +48,6 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder());
     }
 
-    /*public class JsonDeserializers {
-        public static class PasswordDeserializer extends JsonDeserializer<String> {
-            public String deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
-                ObjectCodec oc = jsonParser.getCodec();
-                JsonNode node = oc.readTree(jsonParser);
-                String rawPassword = node.asText();
-                return WebConfiguration.PASSWORD_ENCODER.encode(rawPassword);
-            }
-        }
-    }*/
-
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
@@ -69,6 +58,5 @@ public class WebConfiguration extends WebSecurityConfigurerAdapter {
                 .and().httpBasic()
                 .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                 .and().csrf().disable();
-        ;
     }
 }

@@ -1,6 +1,6 @@
 package com.example.voting;
 
-import com.example.voting.model.User;
+import com.example.voting.domain.User;
 import lombok.Getter;
 import lombok.ToString;
 import org.springframework.lang.NonNull;

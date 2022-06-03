@@ -1,7 +1,7 @@
 package com.example.voting.web;
 
 import com.example.voting.AuthUser;
-import com.example.voting.model.User;
+import com.example.voting.domain.User;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;

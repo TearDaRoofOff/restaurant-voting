@@ -1,9 +1,8 @@
 package com.example.voting.repository;
 
-import com.example.voting.model.User;
+import com.example.voting.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.Optional;
 

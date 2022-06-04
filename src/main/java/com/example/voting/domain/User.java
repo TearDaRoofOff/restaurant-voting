@@ -63,6 +63,11 @@ public class User extends AbstractPersistable<Integer> implements Serializable {
     }
 
     @Override
+    public void setId(Integer id) {
+        super.setId(id);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (Hibernate.getClass(this) != Hibernate.getClass(o)) return false;

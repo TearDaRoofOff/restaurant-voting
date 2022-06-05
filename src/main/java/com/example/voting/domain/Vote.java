@@ -1,5 +1,6 @@
 package com.example.voting.domain;
 
+import lombok.*;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -9,6 +10,10 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "vote", uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "vote_date"},
         name = "vote_unique_userid_votedate_idx")})
+@Getter
+@Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Vote extends AbstractPersistable<Integer> {
 
     @NotNull

@@ -28,14 +28,14 @@ public class AccountController {
     private UserRepository userRepository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public User get(@AuthenticationPrincipal AuthUser authUser) {
-        return authUser.getUser();
+    public AuthUser get(@AuthenticationPrincipal AuthUser authUser) {
+        return authUser;
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void update(@Valid @RequestBody User user, @AuthenticationPrincipal AuthUser authUser) {
-        User oldUser = authUser.getUser();
+        User oldUser = userRepository.getReferenceById(authUser.getId());
         ValidationUtil.assureIdConsistent(user, oldUser.getId());
         user.setRole(oldUser.getRole());
         if (user.getPassword() == null) {
@@ -47,7 +47,7 @@ public class AccountController {
     @DeleteMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@AuthenticationPrincipal AuthUser authUser) {
-        userRepository.delete(authUser.getUser());
+        userRepository.delete(userRepository.getReferenceById(authUser.getId()));
     }
 
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)

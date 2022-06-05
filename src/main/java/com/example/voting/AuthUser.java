@@ -1,23 +1,21 @@
 package com.example.voting;
 
 import com.example.voting.domain.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import javax.validation.constraints.NotNull;
-
 import static java.util.Objects.requireNonNull;
 
 @Getter
-@ToString(of = "user")
 public class AuthUser extends org.springframework.security.core.userdetails.User {
+    static final long serialVersionUID = 1L;
 
     private int id;
-
-    private User user;
 
     public AuthUser(@NonNull User user) {
         super(user.getEmail(), user.getPassword(), user.getRole());
@@ -42,6 +40,5 @@ public class AuthUser extends org.springframework.security.core.userdetails.User
     public static int id() {
         return get().id;
     }
-
 
 }

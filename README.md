@@ -1,0 +1,2 @@
+# restaurant-voting
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/18f32bddd0e645f1a3d494f195d56244)](https://app.codacy.com/gh/TearDaRoofOff/restaurant-voting?utm_source=github.com&utm_medium=referral&utm_content=TearDaRoofOff/restaurant-voting&utm_campaign=Badge_Grade_Settings)

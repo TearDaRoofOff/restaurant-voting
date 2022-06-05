@@ -1,13 +1,11 @@
 package com.example.voting;
 
 import com.example.voting.domain.User;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.ToString;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.Assert;
 
 import static java.util.Objects.requireNonNull;
 
@@ -15,11 +13,15 @@ import static java.util.Objects.requireNonNull;
 public class AuthUser extends org.springframework.security.core.userdetails.User {
     static final long serialVersionUID = 1L;
 
-    private int id;
+    private final int id;
+
+    private final User user;
 
     public AuthUser(@NonNull User user) {
         super(user.getEmail(), user.getPassword(), user.getRole());
+        Assert.notNull(user.getId(), "Entity must has id");
         this.id = user.getId();
+        this.user = user;
     }
 
     public static AuthUser get() {

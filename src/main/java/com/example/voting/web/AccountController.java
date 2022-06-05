@@ -9,7 +9,6 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -28,8 +27,8 @@ public class AccountController {
     private UserRepository userRepository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public AuthUser get(@AuthenticationPrincipal AuthUser authUser) {
-        return authUser;
+    public User get(@AuthenticationPrincipal AuthUser authUser) {
+        return authUser.getUser();
     }
 
     @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -53,7 +52,7 @@ public class AccountController {
     @PostMapping(value = "/register", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<User> register(@Valid @RequestBody User user) {
-        log.info("Registration of user ", user);
+        log.info("Registration of {}", user);
 //        ValidationUtil.checkNew(user);
         user.setRole(Set.of(Role.USER));
         user = userRepository.save(user);
